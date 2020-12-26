@@ -1,13 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React , {useEffect} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
+import * as firebase from 'firebase';
+import {firebaseConfig} from './config/keys';
+import AppContainer from './src/router/AppRouter'
 export default function App() {
+    if (!firebase.apps.length) {
+      console.log('Connected with Firebase')
+      firebase.initializeApp(firebaseConfig);
+    }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+   <AppContainer />
   );
 }
 

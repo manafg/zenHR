@@ -55,5 +55,5 @@ export const AuthStack = createStackNavigator({
         }
     }
 },{
-        initialRouteName: 'Login',
+        initialRouteName: 'Register',
     })
