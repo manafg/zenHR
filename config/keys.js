@@ -7,3 +7,5 @@ export const firebaseConfig = {
     appId: "1:962224493163:web:4941ee7b4e2bfbdaee972e",
     measurementId: "G-SVP0CJMSRR"
   };
+
+  export const happiApiKey = "0fe36dk3z8ow6VNoeMjz92aEUqUMRwuTe5vfI3nrgsatHFGKrpTBFFwf"

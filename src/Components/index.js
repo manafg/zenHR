@@ -6,9 +6,10 @@ import Header from './Header';
 import Input from './Input';
 import Switch from './Switch';
 import Select from './Select';
-
+import {RenderAlbum} from './Album'
 export {
   Button,
+  RenderAlbum,
   Card,
   DrawerItem,
   Icon,

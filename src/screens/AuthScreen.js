@@ -14,20 +14,20 @@ export const AuthLoadingScreen =()=>{
   const firstRender = useRef(true)
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState(0);
-  const  nav = useNavigation("Login")
+  const  nav = useNavigation("Home")
   function onAuthStateChanged(user) {
     setUser(user);
     if (initializing) setInitializing(false);
   }
 
   function callRoute () {
-    useNavigation("Login")
+    useNavigation("Home")
   }
 
   useEffect(() => {
     if(firstRender.current) {firstRender.current = false;  return}
     if (!user) {
-        nav.navigate("Login")
+        nav.navigate("Home")
     }
     
   }, [initializing]);
