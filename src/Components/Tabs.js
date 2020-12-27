@@ -50,7 +50,7 @@ export default class Tabs extends React.Component {
 
   selectMenu = (id) => {
     this.setState({ active: id });
-
+    this.props.returnTabType(id)
     this.menuRef.current.scrollToIndex({
       index: this.props.data.findIndex(item => item.id === id),
       viewPosition: 0.5

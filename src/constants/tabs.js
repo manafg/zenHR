@@ -1,7 +1,7 @@
 export default tabs = {
   categories: [
-    { id: 'latestTrack', title: 'Latest Track' },
-    { id: 'artists', title: 'artists' },
-    { id: 'albums', title: 'albums' },
+    { id: 'LatestTrack', title: 'Latest Track' },
+    { id: 'Artists', title: 'artists' },
+    { id: 'Albums', title: 'albums' },
   ],
 }

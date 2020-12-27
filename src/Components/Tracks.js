@@ -18,20 +18,24 @@ const { width } = Dimensions.get("screen");
 const thumbMeasure = (width - 48 - 32) / 3;
 const cardWidth = width - theme.SIZES.BASE * 2;
 
-export const RenderAlbum = () => {
-    const [Albums , setAlbums] = useState(0);
-    const [name, setName] = useState(0)
+export const RenderTracks = () => {
+    const [tracks , setTracks] = useState(0);
+    const [album, setAlbum] = useState(0)
+    const [albumImage, setAlbumImage] = useState(0)
+
    
     useEffect(()=>{
       let artistId = "49313";
-      Client.get(`/artists/${artistId}/albums`).then((res)=>{
+      let albumId = "412993"
+      Client.get(`/artists/${artistId}/albums/${albumId}/tracks`).then((res)=>{
         let info = `Albums of ${res.data.result.artist}`
-        setName(info)
-        setAlbums(res.data.result.albums)
+        setAlbum(info)
+        setTracks(res.data.result.tracks)
+        setAlbumImage(res.data.result.cover)
       })
     },[])
 
-    
+    let name = `Tracks from ${album}`
     const  nav = useNavigation("Login")
     return (
       <Block
@@ -52,19 +56,30 @@ export const RenderAlbum = () => {
             </Text>
           </Block>
           <Block
-            row
+            column
             space="between"
             style={{ marginTop: theme.SIZES.BASE, flexWrap: "wrap" }}
           >
-            {Albums.length && Albums.map((res, index) => (
-              <Block key={`viewed-${res.id_album}`} style={styles.shadow}>
-                <Image
-                  resizeMode="cover"
-                  source={{ uri: res.cover }}
-                  style={styles.albumThumb}
-                />
-                
-              </Block>
+            {tracks.length && tracks.map((res, index) => (
+              <Block flex card shadow style={styles.category}>
+              <ImageBackground
+                source={{ uri: albumImage ?albumImage : '../../assets/imgs/bg.png' }}
+                style={[
+                  styles.imageBlock,
+                  { width: width - theme.SIZES.BASE * 2, height: 252 }
+                ]}
+                imageStyle={{
+                  width: width - theme.SIZES.BASE * 2,
+                  height: 252
+                }}
+              >
+                <Block style={styles.categoryTitle}>
+                  <Text size={18} bold color={theme.COLORS.WHITE}>
+                    {res.track}
+                  </Text>
+                </Block>
+              </ImageBackground>
+            </Block>
             ))}
           </Block>
         </Block>
@@ -82,6 +97,22 @@ export const RenderAlbum = () => {
     group: {
       paddingTop: theme.SIZES.BASE
     },
+    imageBlock: {
+        overflow: "hidden",
+        borderRadius: 4
+      },
+    category: {
+        backgroundColor: theme.COLORS.WHITE,
+        marginVertical: theme.SIZES.BASE / 2,
+        borderWidth: 0
+      },
+      categoryTitle: {
+        height: "100%",
+        paddingHorizontal: theme.SIZES.BASE,
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        justifyContent: "center",
+        alignItems: "center"
+      },
     albumThumb: {
       borderRadius: 4,
       marginVertical: 4,

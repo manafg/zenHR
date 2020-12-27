@@ -112,6 +112,7 @@ class Header extends React.Component {
         right
         color="black"
         style={styles.search}
+        onChange={(e)=>this.props.changeSearch(e.nativeEvent.text)}
         placeholder="What are you looking for?"
         placeholderTextColor={'#8898AA'}
         onFocus={() => navigation.navigate('Pro')}
@@ -140,8 +141,7 @@ class Header extends React.Component {
     );
   }
   renderTabs = () => {
-    debugger
-    const { tabs, tabIndex, navigation } = this.props;
+    const { tabs, tabIndex, navigation , returnTabType } = this.props;
     const defaultTab = tabs && tabs[0] && tabs[0].id;
     
     if (!tabs) return null;
@@ -150,7 +150,8 @@ class Header extends React.Component {
       <Tabs
         data={tabs || []}
         initialIndex={tabIndex || defaultTab}
-        onChange={id => navigation.setParams({ tabId: id })} />
+        returnTabType={returnTabType}
+        onChange={id => { navigation.setParams({ tabId: id })} } />
     )
   }
   renderHeader = () => {

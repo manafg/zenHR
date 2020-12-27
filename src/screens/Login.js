@@ -151,7 +151,7 @@ export const Login = () => {
                       />
                     </Block>
                     <Block middle>
-                      <Button onPress={()=> {debugger; login(email, password)}}  color={!emailValid && !passwordValid ? "primary" : "disabled"} style={styles.createButton}>
+                      <Button onPress={()=> { login(email, password)}}  color={!emailValid && !passwordValid ? "primary" : "disabled"} style={styles.createButton}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                           Login
                         </Text>

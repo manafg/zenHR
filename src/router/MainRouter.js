@@ -9,16 +9,8 @@ import {
 } from '../screens/index';
 import {  tabs } from "../constants/";
 
-import Header from '../Components/Header'
 
-const MyHeader = (navigation, scene) => {
-    debugger
-    return {
-        header: props => <Header tabs={tabs.categories} search title="Home" navigation={navigation} scene={scene} />,
-        headerStyle: { backgroundColor: '#000' },
-        headerTintColor: '#000',
-    };
-  }
+
 export const AppStack = {
     Home: {
         screen : Home, 
@@ -68,13 +60,10 @@ export const AuthStack = createStackNavigator({
     },
     Home: {
         screen : Home, 
-        options: {
-            header: null
+        navigationOptions: {
+            header:null
         }
     },
 },{
         initialRouteName: 'Login',
-        defaultNavigationOptions: ({ navigation, scene }) => {
-         return MyHeader(navigation, scene)
-        }
     })
