@@ -3,6 +3,7 @@ import {Home} from './Home'
 import {Register} from './Register'
 import {Login} from './Login'
 import {Lyircs} from './lyrics';
+import {Album} from './Album'
 
 
 export {
@@ -10,5 +11,6 @@ export {
     Home,
     Register,
     Login,
-    Lyircs
+    Lyircs,
+    Album
 }

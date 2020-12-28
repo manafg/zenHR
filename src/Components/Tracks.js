@@ -3,9 +3,10 @@ import {
     ScrollView,
     StyleSheet,
     Image,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
     ImageBackground,
-    Dimensions
+    Dimensions,
+    Alert
   } from "react-native";
 import { Block, Checkbox, Text, theme } from "galio-framework";
 import { Card } from './Card';
@@ -13,6 +14,7 @@ import { Card } from './Card';
 import { useNavigation } from 'react-navigation-hooks'
 import { articles, Images, argonTheme } from "../constants/";
 import Client from '../api/Client'
+
 
 const { width } = Dimensions.get("screen");
 const thumbMeasure = (width - 48 - 32) / 3;
@@ -35,8 +37,24 @@ export const RenderTracks = () => {
       })
     },[])
 
+    function navigate (res) {
+      if(!res.haslyrics) {
+        Alert.alert(
+          "Alet",
+          "We don't have the lyrics for this song",
+          [
+            
+            { text: "OK", onPress: () => {}}
+          ],
+          { cancelable: false }
+        );
+      } else {
+       nav.navigate("Lyircs",{...res})
+      }
+    }
+
     let name = `Tracks from ${album}`
-    const  nav = useNavigation("Login")
+    const  nav = useNavigation()
     return (
       <Block
         flex
@@ -50,18 +68,19 @@ export const RenderTracks = () => {
             <Text
               size={12}
               color={theme.COLORS.PRIMARY}
-              onPress={() => nav.navigate("Home")}
+              
             >
               View All
             </Text>
           </Block>
           <Block
             column
-            space="between"
+            
             style={{ marginTop: theme.SIZES.BASE, flexWrap: "wrap" }}
           >
             {tracks.length && tracks.map((res, index) => (
               <Block flex card shadow style={styles.category}>
+              <TouchableOpacity onPress={()=>{navigate(res)}}>
               <ImageBackground
                 source={{ uri: albumImage ?albumImage : '../../assets/imgs/bg.png' }}
                 style={[
@@ -79,6 +98,7 @@ export const RenderTracks = () => {
                   </Text>
                 </Block>
               </ImageBackground>
+              </TouchableOpacity>
             </Block>
             ))}
           </Block>

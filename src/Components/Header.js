@@ -188,7 +188,17 @@ class Header extends React.Component {
           style={navbarStyles}
           transparent={transparent}
           rightStyle={{ alignItems: 'center' }}
-          
+          left={
+            !this.props.none ?
+            <Icon 
+              name={back ? 'chevron-left' : "menu"} family="entypo" 
+              size={20} onPress={this.props.goBack ? this.props.goBack() : this.handleLeftPress} 
+              color={iconColor || (white ? argonTheme.COLORS.WHITE : argonTheme.COLORS.ICON)}
+              style={{ marginTop: 2 }}
+            />
+            : null
+              
+          }
           leftStyle={{ paddingVertical: 12, flex: 0.2 }}
           titleStyle={[
             styles.title,

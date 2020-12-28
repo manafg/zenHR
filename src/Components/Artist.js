@@ -9,6 +9,7 @@ const { width } = Dimensions.get('screen');
 import Client from '../api/Client';
 import axios from 'axios';
 import {happiApiKey} from '../../config/keys'
+import { useNavigation } from 'react-navigation-hooks'
 
 export const RenderArtiset = () => {
     const [artists , setArtists] = useState(0);
@@ -18,13 +19,18 @@ export const RenderArtiset = () => {
       })
     },[])
 
+    const  nav = useNavigation()
+    function navigateToAlbums (res) {
+      debugger
+      nav.navigate("Albums",{...res})
+    }
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.articles}>
         <Block flex>
           {artists ? artists.map((res,key)=>(
-              <Card item={res} horizontal  />
+              <Card navigateToAlbums={navigateToAlbums} item={res} horizontal  />
           )) : null
           }  
           

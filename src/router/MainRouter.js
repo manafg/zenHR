@@ -5,13 +5,20 @@ import {
     Lyircs,
     Register,
     Login,
-    ArtistSongs
+    ArtistSongs,
+    Album
 } from '../screens/index';
 import {  tabs } from "../constants/";
 
 
 
 export const AppStack = {
+    Albums:{
+        screen:Album,
+        navigationOptions: {
+            heder: null
+        }
+    },
     Home: {
         screen : Home, 
         options: {
@@ -62,6 +69,18 @@ export const AuthStack = createStackNavigator({
         screen : Home, 
         navigationOptions: {
             header:null
+        }
+    },
+    Lyircs: {
+        screen : Lyircs, 
+        navigationOptions: {
+            header:null
+        }
+    },
+    Albums:{
+        screen:Album,
+        navigationOptions: {
+            heder: null
         }
     },
 },{

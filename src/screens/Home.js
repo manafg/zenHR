@@ -45,7 +45,7 @@ export const Home = ()=>{
     return(
 
         <Block flex center>
-            <Header tabs={!search.length ? tabs.categories : []} changeSearch={changeSearch} returnTabType={returnTabType} search title="Home" navigation={nav} />
+            <Header none={true} tabs={!search.length ? tabs.categories : []} changeSearch={changeSearch} returnTabType={returnTabType} search title="Home" navigation={nav} />
         <ScrollView
           showsVerticalScrollIndicator={false}
         >
