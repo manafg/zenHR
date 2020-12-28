@@ -21,7 +21,6 @@ export const RenderArtiset = () => {
 
     const  nav = useNavigation()
     function navigateToAlbums (res) {
-      debugger
       nav.navigate("Albums",{...res})
     }
     return (

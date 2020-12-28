@@ -41,7 +41,6 @@ export const Album = ({navigation}) => {
         flex
         style={[styles.group, { paddingBottom: theme.SIZES.BASE * 5 }]}
       >
-         {/* <Header back  title="Album" goBack={goBack} navigation={nav} /> */}
 
         <Text bold size={16} style={styles.title}>
           {name}

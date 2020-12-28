@@ -11,11 +11,13 @@ import { Block, Checkbox, Text, theme } from "galio-framework";
 import { Button, Icon, Input } from "../Components";
 import { Images, argonTheme } from "../constants";
 import * as firebase from 'firebase';
+import { useNavigation } from 'react-navigation-hooks'
 
 
 const { width, height } = Dimensions.get("screen");
 
 export const Register = function () {
+  const { navigate } = useNavigation()
 
   const firstRender = useRef(true)
   const secondFirstRender = useRef(true)
@@ -54,10 +56,11 @@ export const Register = function () {
   
 
   function createUser ( userName , Pass) {
+    if(!userName && !Pass) return
     firebase.auth()
         .createUserWithEmailAndPassword(userName, Pass)
         .then(() => {
-          
+          navigate("Home")
         })
         .catch(error => {
           if (error.code === 'auth/email-already-in-use') {
@@ -130,7 +133,7 @@ export const Register = function () {
                           />
                         }
                       />
-                      {emailValid ? <Text>e.g : example@example.com</Text> :  <Text style={{color:"red", fontSize:16}}>Please enter valid email </Text> }
+                      {!emailValid ? <Text>e.g : example@example.com</Text> :  <Text style={{color:"red", fontSize:16}}>Please enter valid email </Text> }
                     </Block>
                     <Block width={width * 0.8}>
                       <Input
@@ -148,7 +151,7 @@ export const Register = function () {
                           />
                         }
                       />
-                      {passwordValid ? <Text>e.g : 8 char and number </Text> : <Text>Please enter srong password</Text>}
+                      {!passwordValid ? <Text>e.g : 8 char and number </Text> : <Text>Please enter srong password</Text>}
                       <Block row style={styles.passwordCheck}>
                         <Text size={12} color={argonTheme.COLORS.MUTED}>
                           password strength:
@@ -179,7 +182,7 @@ export const Register = function () {
                       </Button>
                     </Block>
                     <Block middle>
-                      <Button disabled={!emailValid && !passwordValid} color={!emailValid && !passwordValid ? "primary" : "disabled"} onPress={()=>{ createUser(email, password)}} style={styles.createButton}>
+                      <Button  color={!emailValid && !passwordValid ? "primary" : "disabled"} onPress={()=>{debugger; createUser(email, password)}} style={styles.createButton}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                           CREATE ACCOUNT
                         </Text>

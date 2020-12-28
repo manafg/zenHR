@@ -36,7 +36,7 @@ export const Login = () => {
         if (complexity == 'alphanumeric') {
             passwordValid = password.length > 8;
         }
-        setPasswordValid(!passwordValid)
+        setPasswordValid(passwordValid)
       },[password])
     
       useEffect(()=>{
@@ -47,7 +47,7 @@ export const Login = () => {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
          
         let emailValidation = re.test(email)
-        setEmailValid(!emailValidation)
+        setEmailValid(emailValidation)
       },[email])
 
       useEffect(()=>{
@@ -59,7 +59,7 @@ export const Login = () => {
        firebase.auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
-            console.log('User account created & signed in!');
+          navigate("Home")
         })
         .catch(error => {
             if (error.code === 'auth/email-already-in-use') {

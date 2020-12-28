@@ -23,7 +23,6 @@ export const Home = ()=>{
     }
 
     function changeSearch(text) {
-      debugger
       setSearchText(text)
     }
 

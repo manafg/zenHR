@@ -27,7 +27,9 @@ export const AuthLoadingScreen =()=>{
   useEffect(() => {
     if(firstRender.current) {firstRender.current = false;  return}
     if (!user) {
-        nav.navigate("Home")
+        nav.navigate("Login")
+    } else {
+      nav.navigate("Home")
     }
     
   }, [initializing]);

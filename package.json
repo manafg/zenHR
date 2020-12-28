@@ -3,6 +3,7 @@
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
+    "test": "mocha --require react-native-mock/mock.js —-compilers js:babel-core/register --recursive test/*.js",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject"
@@ -28,7 +29,13 @@
     "react-navigation-stack": "^2.10.2"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0"
+    "@babel/core": "~7.9.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-react-native": "^4.0.1",
+    "chai": "^4.2.0",
+    "enzyme": "^3.11.0",
+    "mocha": "^8.2.1",
+    "react-native-mock": "^0.3.1"
   },
   "private": true
 }
